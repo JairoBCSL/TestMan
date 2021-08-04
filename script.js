@@ -1,4 +1,4 @@
-var fps = 60, gMax = 12, timestamp = new Date().getTime(), count = 0, aux = 0, vezes = 0, vezesAux = 0, aff = "";
+var fps = 60, gMax = 12, timestamp = new Date().getTime(), count = 0, aux = 63, vezes = 0, vezesAux = 0, aff = "";
 
 class Map{
   constructor(layers, cols, rows, tSize, tileSetPath, colsImage){
