@@ -178,7 +178,7 @@ class Player{
     this.automato.push({q0:"WLD", i:"J", q1:"WJLD"});*/
   }
   fisica() {
-    this.moveDash();
+    //this.moveDash();
     this.jump();
     this.move();
     this.shoot();
