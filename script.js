@@ -1,4 +1,4 @@
-var fps = 60, gMax = 12;
+var fps = 60, gMax = 12, timestamp = new Date().getTime(), count = 0, aux = 0, vezes = 0, vezesAux = 0, aff = "";
 
 class Map{
   constructor(layers, cols, rows, tSize, tileSetPath, colsImage){
@@ -836,5 +836,14 @@ function debug(){
     text += "<br><br>Tile" + i + "X: " + map.getTileX(map.getTile(i, 0) % 536870912);
     text += "<br><br>Tile" + i + "Y: " + map.getTileY(map.getTile(i, 0) % 536870912);
   }*/
+  if((new Date().getTime() - timestamp) >= 1000){
+    timestamp = new Date().getTime();
+    aux = count;
+    count = 0;
+    vezesAux = vezes;
+    vezes = 0;
+  }
+  text += "<br><br>Vezes : " + vezesAux / aux;
+  text += "<br><br>FPS: " + aux;
   document.getElementById("stats").innerHTML = text;
 }
