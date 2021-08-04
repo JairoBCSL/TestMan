@@ -558,7 +558,7 @@ class Projetil{
 }
 
 map = new Map(mapas.layers, 100, 40, 16, "tiles.png", 3);
-player = new Player("x.png", spriteX, 267, 342, 18, 31, 2, 5, 4, 40);
+player = new Player("x.png", spriteX, 267, 302, 18, 31, 2, 5, 4, 40);
 projetils = [];
 
 var game = {
