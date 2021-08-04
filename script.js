@@ -836,6 +836,7 @@ function debug(){
     text += "<br><br>Tile" + i + "X: " + map.getTileX(map.getTile(i, 0) % 536870912);
     text += "<br><br>Tile" + i + "Y: " + map.getTileY(map.getTile(i, 0) % 536870912);
   }*/
+  count++;
   if((new Date().getTime() - timestamp) >= 1000){
     timestamp = new Date().getTime();
     aux = count;
