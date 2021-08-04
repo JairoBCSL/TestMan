@@ -1,0 +1,31 @@
+shootX = {	//obj.states[0].posicaoY;
+	"nState":2,
+	"states":[
+		{// normal0
+			"nFrames":1,
+			"hitboxX":8,
+			"hitboxY":6,
+			"gapX":0,
+			"gapY":0,
+			"posicaoX":0,
+			"posicaoY":37,
+			"frameWidth":8,
+			"frameHeight":6,
+			"frameCounts":[0],
+			"frameWaits":[1]
+		},
+		{// carregado1
+			"nFrames":3,
+			"hitboxX":23,
+			"hitboxY":16,
+			"gapX":12,
+			"gapY":8,
+			"posicaoX":0,
+			"posicaoY":0,
+			"frameWidth":46,
+			"frameHeight":32,
+			"frameCounts":[0, 1, 2],
+			"frameWaits":[5, 5, 5]
+		}
+	]
+}

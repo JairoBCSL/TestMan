@@ -1,0 +1,135 @@
+spriteX = {	//obj.states[0].posicaoY;
+	"nState":4,
+	"states":[
+		{// parado0
+			"nFrames":12,
+			"hitboxX":18,
+			"hitboxY":32,
+			"gapX":5,
+			"gapY":2,
+			"posicaoX":0,
+			"posicaoY":40,
+			"frameWidth":35,
+			"frameHeight":34,
+			"frameCounts":[0, 1, 2, 1, 0, 1, 2, 1, 0, 1, 2, 1],
+			"frameWaits":[100, 5, 5, 10, 25, 5, 5, 10, 10, 5, 5, 10]
+		}, //Onde começa e onde termina o loop ou estad começando a andar
+		{// andando1
+			"nFrames":10,
+			"hitboxX":18,
+			"hitboxY":32,
+			"gapX":5,
+			"gapY":2,
+			"posicaoX":34,
+			"posicaoY":0,
+			"frameWidth":34,
+			"frameHeight":35,
+			"frameCounts":[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+			"frameWaits":[4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+		},
+		{// pulando2
+			"nFrames":3,
+			"hitboxX":18,
+			"hitboxY":32,
+			"gapX":5,
+			"gapY":5,
+			"posicaoX":0,
+			"posicaoY":79,
+			"frameWidth":30,
+			"frameHeight":46,
+			"frameCounts":[0,1,2],
+			"frameWaits":[5, 2, 1000]
+		},
+		{// caindo3
+			"nFrames":2,
+			"hitboxX":18,
+			"hitboxY":32,
+			"gapX":5,
+			"gapY":2,
+			"posicaoX":90,
+			"posicaoY":80,
+			"frameWidth":30,
+			"frameHeight":46,
+			"frameCounts":[0, 1],
+			"frameWaits":[10, 1000]
+		},
+		{// tiro4
+			"nFrames":3,
+			"hitboxX":18,
+			"hitboxY":32,
+			"gapX":5,
+			"gapY":2,
+			"posicaoX":140,
+			"posicaoY":40,
+			"frameWidth":35,
+			"frameHeight":34,
+			"frameCounts":[0, 1, 0],
+			"frameWaits":[5, 10, 50000]
+		},
+		{// andando e atirando5
+			"nFrames":10,
+			"hitboxX":18,
+			"hitboxY":32,
+			"gapX":5,
+			"gapY":2,
+			"posicaoX":38,
+			"posicaoY":130,
+			"frameWidth":38,
+			"frameHeight":35,
+			"frameCounts":[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+			"frameWaits":[4, 4, 4, 4, 4, 4, 4, 4, 4, 4]
+		},
+		{// pulando e atirando6
+			"nFrames":3,
+			"hitboxX":18,
+			"hitboxY":32,
+			"gapX":5,
+			"gapY":5,
+			"posicaoX":0,
+			"posicaoY":170,
+			"frameWidth":36,
+			"frameHeight":46,
+			"frameCounts":[0,1,2],
+			"frameWaits":[5, 2, 1000]
+		},
+		{// caindo e atirando7
+			"nFrames":2,
+			"hitboxX":18,
+			"hitboxY":32,
+			"gapX":5,
+			"gapY":2,
+			"posicaoX":108,
+			"posicaoY":170,
+			"frameWidth":36,
+			"frameHeight":46,
+			"frameCounts":[0, 1],
+			"frameWaits":[10, 1000]
+		},
+		{// dash8
+			"nFrames":2,
+			"hitboxX":21,
+			"hitboxY":26,
+			"gapX":6,
+			"gapY":5,
+			"posicaoX":210,
+			"posicaoY":40,
+			"frameWidth":48,
+			"frameHeight":31,
+			"frameCounts":[0, 1],
+			"frameWaits":[4, 1000]
+		},
+		{// dash e atirando9
+			"nFrames":2,
+			"hitboxX":21,
+			"hitboxY":26,
+			"gapX":6,
+			"gapY":5,
+			"posicaoX":306,
+			"posicaoY":40,
+			"frameWidth":48,
+			"frameHeight":31,
+			"frameCounts":[0, 1],
+			"frameWaits":[4, 1000]
+		}
+	]
+}

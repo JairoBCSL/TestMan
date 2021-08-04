@@ -1,0 +1,1 @@
+Estado => Andando / Atacando / Pulando / Caindo / Dash

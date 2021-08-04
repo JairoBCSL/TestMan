@@ -1,0 +1,17 @@
+body{
+  background: #444;
+}
+
+canvas {
+  display: inline;
+  border:1px solid #d3d3d3;
+  background: #408;
+}
+
+div{
+  position: fixed;
+  right: 1;
+  top: 5;
+  border: 1px solid red;
+  display: inline-block;
+}
