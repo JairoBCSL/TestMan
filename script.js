@@ -51,12 +51,12 @@ class Player{
     this.automato.push({q0:"I", i:"J", q1:"J"});
     this.automato.push({q0:"I", i:"!C", q1:"F"});
     this.automato.push({q0:"I", i:"A", q1:"A"});
-    this.automato.push({q0:"I", i:"D", q1:"D"});
+    //this.automato.push({q0:"I", i:"D", q1:"D"});
     this.automato.push({q0:"W", i:"A", q1:"WA"});
     this.automato.push({q0:"W", i:"!C", q1:"WF"});
     this.automato.push({q0:"W", i:"J", q1:"WJ"});
     this.automato.push({q0:"W", i:"!W", q1:"I"});
-    this.automato.push({q0:"W", i:"D", q1:"WD"});
+    //this.automato.push({q0:"W", i:"D", q1:"WD"});
     this.automato.push({q0:"J", i:"A", q1:"JA"});
     this.automato.push({q0:"J", i:"!J", q1:"F"});
     this.automato.push({q0:"J", i:"!JS", q1:"F"});
@@ -77,21 +77,21 @@ class Player{
     this.automato.push({q0:"A", i:"!A", q1:"I"});
     this.automato.push({q0:"A", i:"J", q1:"JA"});
     this.automato.push({q0:"A", i:"W", q1:"WA"});
-    this.automato.push({q0:"A", i:"D", q1:"AD"});
+    //this.automato.push({q0:"A", i:"D", q1:"AD"});
     //this.automato.push({q0:"A", i:"A", q1:"L"});
     this.automato.push({q0:"L", i:"!A", q1:"I"});
     this.automato.push({q0:"L", i:"J", q1:"JL"});
     this.automato.push({q0:"L", i:"W", q1:"WL"});
-    this.automato.push({q0:"L", i:"D", q1:"LD"});
+    //this.automato.push({q0:"L", i:"D", q1:"LD"});
     this.automato.push({q0:"WA", i:"J", q1:"WJA"});
     this.automato.push({q0:"WA", i:"!W", q1:"A"});
     this.automato.push({q0:"WA", i:"!A", q1:"W"});
-    this.automato.push({q0:"WA", i:"D", q1:"WAD"});
+    //this.automato.push({q0:"WA", i:"D", q1:"WAD"});
     //this.automato.push({q0:"WA", i:"A", q1:"WL"});
     this.automato.push({q0:"WL", i:"J", q1:"WJL"});
     this.automato.push({q0:"WL", i:"!W", q1:"L"});
     this.automato.push({q0:"WL", i:"!A", q1:"W"});
-    this.automato.push({q0:"WL", i:"D", q1:"WLD"});
+    //this.automato.push({q0:"WL", i:"D", q1:"WLD"});
     this.automato.push({q0:"JA", i:"!J", q1:"FA"});
     this.automato.push({q0:"JA", i:"!JS", q1:"FA"});
     this.automato.push({q0:"JA", i:"T", q1:"FA"});
@@ -130,7 +130,7 @@ class Player{
     this.automato.push({q0:"WFL", i:"!A", q1:"WF"});
     this.automato.push({q0:"WFL", i:"!W", q1:"FL"});
     this.automato.push({q0:"WFL", i:"C", q1:"WL"});
-    this.automato.push({q0:"D", i:"!D", q1:"I"}); //Colocar os outros (D->j->JD)
+    /*this.automato.push({q0:"D", i:"!D", q1:"I"}); //Colocar os outros (D->j->JD)
     this.automato.push({q0:"D", i:"J", q1:"JD"});
     this.automato.push({q0:"D", i:"W", q1:"WD"});
     this.automato.push({q0:"D", i:"A", q1:"AD"});
@@ -175,7 +175,7 @@ class Player{
     this.automato.push({q0:"WLD", i:"!W", q1:"LD"});
     this.automato.push({q0:"WLD", i:"!D", q1:"WL"});
     this.automato.push({q0:"WLD", i:"!A", q1:"WD"});
-    this.automato.push({q0:"WLD", i:"J", q1:"WJLD"});
+    this.automato.push({q0:"WLD", i:"J", q1:"WJLD"});*/
   }
   fisica() {
     this.moveDash();
