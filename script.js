@@ -35,13 +35,13 @@ class Player{
     this.x = x; this.y = y; this.w = w; this.h = h; // Posição no mundo
     this.xSRC = 0; this.ySRC = 0; this.wSRC = 0; this.hSRC = 0; // Coordenadas no sprite
     this.gapX = 0; this.gapY = 0;// Gap do frame
-    this.dir = 1; this.orient = 1;
+    this.dir = 1; this.dirA = 1; this.orient = 1;
     this.spd = 0; this.spdMax = spdMax;
     this.g = 0; this.jumpSpeed = 0; this.jumpHeight = jumpHeight;
     this.dashSpeed = dashSpeed; this.dashDist = 0; this.dashLength = dashLength;
     this.dashCooldown = 0; this.dashCooldownMax = 15;
     this.cooldown = 0; this.cooldownMax = 10;
-    this.humJump = 1; this.humDash = 1; this.humShoot = 1;
+    this.humWalk = 1; this.humJump = 1; this.humDash = 1; this.humShoot = 1;
     this.shooting = 0; this.carga = 0;
     this.up = 0; this.down = 0; this.left = 0; this.right = 0; this.tiro = 0; // Controles
     this.andando = 0; this.atacando = 0; this.pulando = 0; this.caindo = 0; this.dash = 0; //Estados
@@ -51,12 +51,12 @@ class Player{
     this.automato.push({q0:"I", i:"J", q1:"J"});
     this.automato.push({q0:"I", i:"!C", q1:"F"});
     this.automato.push({q0:"I", i:"A", q1:"A"});
-    //this.automato.push({q0:"I", i:"D", q1:"D"});
+    this.automato.push({q0:"I", i:"D", q1:"D"});
     this.automato.push({q0:"W", i:"A", q1:"WA"});
     this.automato.push({q0:"W", i:"!C", q1:"WF"});
     this.automato.push({q0:"W", i:"J", q1:"WJ"});
     this.automato.push({q0:"W", i:"!W", q1:"I"});
-    //this.automato.push({q0:"W", i:"D", q1:"WD"});
+    this.automato.push({q0:"W", i:"D", q1:"WD"});
     this.automato.push({q0:"J", i:"A", q1:"JA"});
     this.automato.push({q0:"J", i:"!J", q1:"F"});
     this.automato.push({q0:"J", i:"!JS", q1:"F"});
@@ -130,14 +130,14 @@ class Player{
     this.automato.push({q0:"WFL", i:"!A", q1:"WF"});
     this.automato.push({q0:"WFL", i:"!W", q1:"FL"});
     this.automato.push({q0:"WFL", i:"C", q1:"WL"});
-    /*this.automato.push({q0:"D", i:"!D", q1:"I"}); //Colocar os outros (D->j->JD)
-    this.automato.push({q0:"D", i:"J", q1:"JD"});
+    this.automato.push({q0:"D", i:"!D", q1:"I"}); //Colocar os outros (D->j->JD)
+    /*this.automato.push({q0:"D", i:"J", q1:"JD"});
     this.automato.push({q0:"D", i:"W", q1:"WD"});
     this.automato.push({q0:"D", i:"A", q1:"AD"});
     this.automato.push({q0:"D", i:"!C", q1:"F"});
     this.automato.push({q0:"WD", i:"A", q1:"WAD"});
     this.automato.push({q0:"WD", i:"J", q1:"WJD"});
-    this.automato.push({q0:"WD", i:"!D", q1:"W"});
+    */this.automato.push({q0:"WD", i:"!D", q1:"I"});/*
     this.automato.push({q0:"WD", i:"!W", q1:"D"});
     this.automato.push({q0:"WD", i:"!C", q1:"WF"});
     this.automato.push({q0:"JD", i:"W", q1:"WJD"});
@@ -178,7 +178,7 @@ class Player{
     this.automato.push({q0:"WLD", i:"J", q1:"WJLD"});*/
   }
   fisica() {
-    //this.moveDash();
+    this.moveDash();
     this.jump();
     this.move();
     this.shoot();
@@ -186,9 +186,12 @@ class Player{
   }
   move(){
     this.dir = this.right - this.left; // Andando
+    if(this.dir != this.dirA && (this.estadoAtual == "D" || this.estadoAtual == "WD"))
+      this.automatoNext("!D");
+    this.dirA = this.dir;
     if(this.dir)
       this.orient = this.dir;
-    if(this.dir && placeFree(this, this.x + 1 * this.dir, this.y)){
+    if(this.humWalk && this.dir && placeFree(this, this.x + 1 * this.dir, this.y)){
       if(this.spd < this.spdMax){
         this.spd+=0.25;
         // Começando a andar
@@ -275,37 +278,29 @@ class Player{
     if (this.dash && placeFree(this, this.x + this.orient, this.y) && this.humDash && !placeFree(this, this.x, this.y+1)){ // Começou dash
       this.dir = this.orient;
       this.dashDist = this.dashLength;
-      this.spdMax = this.dashSpeed;
+      this.spd = this.dashSpeed;
       this.humDash = 0;
       this.automatoNext("D");
-    }else if (this.dashDist > 0 && (placeFree(this, this.x + this.orient, this.y))){ // Dashando
-      if(!this.estadoAtual.includes("W") && (this.estadoAtual.includes("J")||this.estadoAtual.includes("F"))){
-          this.spd = 0;
-      }else if (this.dash){ // Dash
-        this.dir = this.orient;
-        this.spd = this.dashSpeed;
-        this.dashDist--;
-      }else{ // Soltou o dash
-        this.dashDist = 0;
-        this.dashCooldown = this.dashCooldownMax;
-        this.automatoNext("!D");
-      }if(!this.dashDist){ // Acabou o dash
-        this.spd = 0;
-        this.dashCooldown = this.dashCooldownMax;
-        this.automatoNext("!D");
-      }if(placeFree(this, this.x, this.y+1)){
-        this.dashDist = 0;
-        this.dashCooldown = this.dashCooldownMax;
-        this.automatoNext("!D");
-      }
-    }else if(this.estadoAtual.includes("D")){ // Bateu na parede ou acabou o dash
-      this.spdMax = 2;
-      this.dashCooldown = this.dashCooldownMax;
+      console.log("Aff");
+    }else if (this.dash && this.dashDist > 0 && (placeFree(this, this.x + this.orient, this.y))){ // Dashando
+      this.spd = this.dashSpeed;
+      this.dashDist--;
+    }else if(this.estadoAtual.includes("D") && !(placeFree(this, this.x + this.orient, this.y))){ // Bateu na parede
+      this.dashDist = 0;
+      this.spd = 0;
+      this.dir = 0;
+      this.humWalk = 0;
       this.automatoNext("!D");
-    }if(this.dashCooldown){ // Nda de dash
+      this.dashCooldown = this.dashCooldownMax;
+    }else if(this.estadoAtual.includes("D") && (!this.dash || !this.dashDist)){ // Parou ou acabou o Dash
+      this.dashDist = 0;
+      this.humWalk = 0;
+      this.automatoNext("!D");
+      this.dashCooldown = this.dashCooldownMax;
+    }if(this.dashCooldown){ // Dash Coolingdown
       this.dashCooldown--;
       if(!this.dashCooldown)
-        this.automatoNext("!D");
+        this.humWalk = 1;
     }else if(!this.dash){
       this.humDash = 1;
     }
@@ -779,11 +774,12 @@ function debug(){
   //text += "Posicao Player: (" + player.x + ", " + player.y + ")";
   text += "Posicao Player: (" + Math.floor(player.x) + ", " + Math.floor(player.y) + ")";
   text += "<br><br>Estado Player: ";
-  /*text += "<br><br>Andando: " + player.andando;
+  text += "<br><br>Andando: " + player.andando;
   text += "<br><br>Atacando: " + player.atacando;
   text += "<br><br>Pulando: " + player.pulando;
   text += "<br><br>Caindo: " + player.caindo;
-  text += "<br><br>Dash: " + player.dash;*/
+  text += "<br><br>Dash: " + player.dash;
+  text += "<br><br>Dash: " + player.humDash;
   //text += "Posição Enemy: (" + enemy.x + ", " + enemy.y + ")";
   //text += "Move Enemy: (" + enemy.up + ", " + enemy.left + ", " + enemy.down + ", " + enemy.right + ")";
   text += "<br><br>Posição Câmera: (" + cam.x + ", " + cam.y + ")";
